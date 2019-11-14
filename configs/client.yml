@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  namespace: go-driver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-driver-app
+  template:
+    metadata:
+      namespace: go-driver
+      labels:
+        app: go-driver-app
+    spec:
+      containers:
+        - name: client
+          image: client:latest
+          imagePullPolicy: Never
+          env:
+            - name: ADDRESS
+              value: go-driver-service.go-driver:9432

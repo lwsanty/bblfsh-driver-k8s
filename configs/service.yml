@@ -1,0 +1,17 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: go-driver
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: go-driver-service
+  namespace: go-driver
+spec:
+  selector:
+    app: go-driver-app
+  ports:
+    - protocol: TCP
+      port: 9432
+      targetPort: grpc
